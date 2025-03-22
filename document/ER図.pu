@@ -1,0 +1,41 @@
+@startuml
+
+entity "User" as user {
+  * id : String
+  --
+  * username : String
+  * hashedPassword : String
+}
+
+entity "Project" as project {
+  * id : String
+  --
+  * projectName : String
+  * duration : Date
+}
+
+entity "Feedback" as feedback {
+  * id : String
+  --
+  * reviewDate : Date
+  * reviewName : String
+  * target : String
+  * reviewContent : String
+  * correctionStatus : String
+}
+
+entity "ReviewCategory" as reviewCategory {
+  * id : String
+  --
+  * categoryName : String
+}
+
+user ||--o{ project : "creates"
+user ||--o{ project : "adds member"
+project ||--o{ feedback : "contains"
+project ||--o{ reviewCategory : "manages"
+feedback ||--|| reviewCategory : "has"
+feedback ||--|| user : "author"
+feedback ||--|| user : "assignee"
+
+@enduml
