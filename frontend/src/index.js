@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import MyHello from './MyHello';
 import EventBasic from './EventBasic';
 import StateBasic from './StateBasic';
+import ForNest from './ForNest.js';
+import books from './books.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 setInterval(() => {
   root.render(
     <React.StrictMode>
-      <StateBasic init={0} />
+      <ForNest src={books} />
+      {/* <StateBasic init={0} /> */}
       {/* <EventBasic /> */}
       {/* <MyHello name="五十嵐" age={24} /> */}
       {/* <App />
