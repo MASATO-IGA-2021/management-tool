@@ -1,0 +1,6 @@
+#### pip install -r requirements.txt
+fastapi
+uvicorn[standard]
+pydantic
+sqlalchemy
+python-dotenv
