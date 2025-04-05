@@ -1,16 +1,13 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { Box, Button, Image, Link, Text } from '@chakra-ui/react';
-import CreateProjects from './screens/createProjects'
+import './App.css';
+import { TAB_ITEMS } from './Const'; // 修正: 正しい名前でインポート
+import DefaultHeader from './header/DefaultHeader';
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <Box>
+    return (
+        <>
+            {/* 修正: itemProps を items に変更 */}
+            <DefaultHeader items={TAB_ITEMS} />
+            {/* <Box>
         <Link href="https://vite.dev" target="_blank">
           <Image src={viteLogo} className="logo" alt="Vite logo" />
         </Link>
@@ -31,9 +28,9 @@ function App() {
         Click on the Vite and React logos to learn more
       </Text>
 
-      <CreateProjects />
-    </>
-  )
+      <CreateProjects /> */}
+        </>
+    );
 }
 
-export default App
+export default App;

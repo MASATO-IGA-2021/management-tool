@@ -1,41 +1,55 @@
 @startuml
-
-entity "User" as user {
-  * id : String
+' Define entities
+entity "Users" as users {
+  *user_id : INT
   --
-  * username : String
-  * hashedPassword : String
+  user_name : VARCHAR
+  email : VARCHAR
+  password : VARCHAR
+  created_at : DATETIME
+  updated_at : DATETIME
+  is_active : BOOLEAN
 }
 
-entity "Project" as project {
-  * id : String
+entity "Products" as products {
+  *product_id : INT
   --
-  * projectName : String
-  * duration : Date
+  product_name : VARCHAR
+  description : TEXT
+  price : DECIMAL
+  stock : INT
+  created_at : DATETIME
 }
 
-entity "Feedback" as feedback {
-  * id : String
+entity "Orders" as orders {
+  *order_id : INT
   --
-  * reviewDate : Date
-  * reviewName : String
-  * target : String
-  * reviewContent : String
-  * correctionStatus : String
+  user_id : INT
+  order_date : DATETIME
+  total_amount : DECIMAL
 }
 
-entity "ReviewCategory" as reviewCategory {
-  * id : String
+entity "OrderDetails" as order_details {
+  *order_detail_id : INT
   --
-  * categoryName : String
+  order_id : INT
+  product_id : INT
+  quantity : INT
+  price : DECIMAL
 }
 
-user ||--o{ project : "creates"
-user ||--o{ project : "adds member"
-project ||--o{ feedback : "contains"
-project ||--o{ reviewCategory : "manages"
-feedback ||--|| reviewCategory : "has"
-feedback ||--|| user : "author"
-feedback ||--|| user : "assignee"
+entity "Sessions" as sessions {
+  *session_id : INT
+  --
+  user_id : INT
+  token : VARCHAR
+  created_at : DATETIME
+  expires_at : DATETIME
+}
 
+' Define relationships
+users ||--o{ orders : "注文する"
+orders ||--o{ order_details : "contains"
+products ||--o{ order_details : "included in"
+users ||--o{ sessions : "ログインセッション"
 @enduml
