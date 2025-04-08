@@ -1,12 +1,25 @@
+import { useAtom } from 'jotai';
 import './App.css';
 import { TAB_ITEMS } from './Const'; // 修正: 正しい名前でインポート
 import DefaultHeader from './header/DefaultHeader';
+import {
+    memberAtom,
+    milestoneAtom,
+    projectAtom,
+    taskAtom,
+} from './store/mainStore';
+import ProjectSideMenu from './sideMenu/projectsSideMenu';
 
 function App() {
+    const [projects, setProjects] = useAtom(projectAtom);
+    const [tasks, setTasks] = useAtom(taskAtom);
+    const [members, setMembers] = useAtom(memberAtom);
+    const [mailestones, setMilestones] = useAtom(milestoneAtom);
     return (
         <>
             {/* 修正: itemProps を items に変更 */}
             <DefaultHeader items={TAB_ITEMS} />
+            <ProjectSideMenu />
             {/* <Box>
         <Link href="https://vite.dev" target="_blank">
           <Image src={viteLogo} className="logo" alt="Vite logo" />
